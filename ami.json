@@ -1,0 +1,39 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `aws_access_key`}}",
+        "aws_secret_key": "{{env `aws_secret_key`}}",
+        "aws_region": "{{env `aws_default_region`}}",
+        "source_ami": "ami-03d315ad33b9d49c4",
+        "ssh_username": "ubuntu",
+        "ami_users": "403193984749,111050889660"
+    },
+    "builders": [{
+        "type": "amazon-ebs",
+        "ami_users": "{{user `ami_users`}}",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `aws_region`}}",
+        "ami_name": "csye6225_{{timestamp}}",
+        "ami_description": "Ubuntu AMI for CSYE 6225 - spring 2021",
+        "instance_type": "t2.micro",
+        "source_ami": "{{user `source_ami`}}",
+        "ssh_username": "{{user `ssh_username`}}",
+
+        "launch_block_device_mappings": [{
+            "device_name": "/dev/sda1",
+            "volume_size": 8,
+            "volume_type": "gp2",
+            "delete_on_termination": true
+        }]
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "inline": [
+            "sudo apt update -y && sudo apt upgrade -y",
+            "curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -",
+            "sudo apt install -y nodejs",
+            "node -v",
+            "npm -v"
+        ]
+    }]
+}
