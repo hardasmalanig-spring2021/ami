@@ -1,8 +1,6 @@
 name: Run packer build
-on:
-  pull_request:
-    types: [ opened ]
-      branches: [ main ]
+on: [pull_request]
+    
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -12,7 +10,7 @@ jobs:
 
       - name: Validate Packer Template
         uses: hashicorp/packer-github-actions@main
-      11with:
+      with:
           command: validate
           argumenrs: -syntax-only
           target: ami.json
