@@ -1,5 +1,5 @@
 name: Run packer build
-on: [pull_request]
+on: [ pull_request ]
     
 jobs:
   validate:
@@ -10,7 +10,7 @@ jobs:
 
       - name: Validate Packer Template
         uses: hashicorp/packer-github-actions@main
-      with:
+        with:
           command: validate
           argumenrs: -syntax-only
           target: ami.json
