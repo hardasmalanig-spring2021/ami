@@ -1,14 +1,14 @@
 name: Run packer build
 on:
   pull_request:
-    types: [assigned, opened, synchronize, reopened]
+    types: [opened]
       branches: [ main ]
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Validate Packer Template
         uses: hashicorp/packer-github-actions@main
