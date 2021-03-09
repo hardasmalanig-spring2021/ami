@@ -36,25 +36,10 @@ jobs:
       - name: Validate Packer Template
         uses: hashicorp/packer-github-actions@master
         with:
-          command: validate
-          argumenrs: --syntax-only
-          target: ami.json
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_USERS: ${{ secrets.AMI_USERS }}
-          AWS_SOURCE_AMI: ${{ secrets.AWS_SOURCE_AMI }}
-
-      - name: Build Packer Template
-        uses: hashicorp/packer-github-actions@master
-        with:
           command: build
-          argumenrs: --syntax-only
+          argumenrs: -syntax-only
           target: ami.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_USERS: ${{ secrets.AMI_USERS }}
-          AWS_SOURCE_AMI: ${{ secrets.AWS_SOURCE_AMI }}
