@@ -8,14 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v1
-       
-       name: Validate Packer Template
-       uses: hashicorp/packer-github-actions@main
-       with:
-        command: validate
-        arguments: -syntax-only
-        target: ami.json
+      - uses: actions/checkout@v1
+      - run: packer validate ami.jspn
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
