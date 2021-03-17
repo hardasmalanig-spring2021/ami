@@ -1,14 +1,10 @@
 name: Run packer build
 on: 
-  push:
-    branches:
-      - 'main'
   pull_request:
     
 jobs:
   validate:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -27,7 +23,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout Repository Build
         uses: actions/checkout@v1
