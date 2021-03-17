@@ -1,8 +1,10 @@
 name: Run packer build
+
 on: 
-  pull_request:
-     branches:
+  push:
+    branches:
       - 'main'
+  pull_request:
     
 jobs:
   validate:
