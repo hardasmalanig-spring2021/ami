@@ -24,8 +24,8 @@ jobs:
 
 
   build:
-    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository Build
         uses: actions/checkout@v1
