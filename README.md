@@ -18,7 +18,7 @@ This application will help launch Amazon EC2 instance by building AMI using usin
        - sudo dnf -y install packer
 
     2. verify installation
-       - packer
+       - Hasicorp packer
 
 ## Build AMI
 
